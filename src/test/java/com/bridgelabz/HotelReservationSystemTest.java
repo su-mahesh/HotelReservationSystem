@@ -10,12 +10,13 @@ public class HotelReservationSystemTest {
 
         HotelReservationSystem hotelReservationSystem = new HotelReservationSystem();
 
-        hotelReservationSystem.addHotel("Lakewood", 100f);
-        String result1 = hotelReservationSystem.getHotelName();
+        hotelReservationSystem.addHotel("Lakewood", (Float) 100f);
 
-        Float result2 = hotelReservationSystem.getRateForRegularCustomer();
+        Boolean result1 = hotelReservationSystem.checkIfHotelExist("Lakewood");
+        Float result2 = hotelReservationSystem.getRateForRegularCustomer("Lakewood");
 
-        Assert.assertEquals("Lakewood", result1);
+        Assert.assertTrue(result1);
         Assert.assertEquals((Float) 100f, result2);
     }
+
 }

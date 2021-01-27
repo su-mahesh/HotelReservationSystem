@@ -8,30 +8,34 @@ public class HotelReservationSystem {
     private Float rateForRegularCustomer;
 
     HashMap<String, Float> rates;
-    HashMap<String,HashMap> hotels;
+    HashMap<String,HashMap<String, Float>> hotels;
 
     public void addHotel(String hotelName, Float rateForRegularCustomer ) {
 
         rates = new HashMap<>();
         hotels = new HashMap<>();
 
-        rates.put("Rate for RegularCustomer", rateForRegularCustomer);
-        hotels.put(hotelName, rates);
+        rates.put("Rate for Regular Customer", (Float) rateForRegularCustomer);
+        hotels.put(hotelName.toLowerCase(), rates);
     }
-
 
     public static void main(String[] args) {
         System.out.println("Welcome to hotel reservation program");
     }
 
-
-    public String getHotelName() {
-
-        return hotelName;
+    public Float getRateForRegularCustomer(String hotelName) {
+        hotelName = hotelName.toLowerCase();
+        if (hotels.containsKey(hotelName))
+            return hotels.get(hotelName).get("Rate for Regular Customer");
+        else
+            return 0f;
     }
 
-    public Float getRateForRegularCustomer() {
+    public Boolean checkIfHotelExist(String hotelName) {
 
-        return rateForRegularCustomer;
+        if (hotels.containsKey(hotelName.toLowerCase()))
+            return true;
+        else
+            return false;
     }
 }
